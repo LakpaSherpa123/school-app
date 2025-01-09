@@ -10,13 +10,19 @@ const fetchData = async () :Promise <SchoolData[]>=> {
     return json
 }
 
-export const SchoolList = () => {
+export const useSchoolData = () =>{
     const [schools, setSchools] = useState<SchoolData[]>([])
 
     useEffect(() => {
         fetchData().then(setSchools)
-    }, [])                              // [] empty array - makes it run only 1 time, otherwise will run indefinitely
+    }, [])                               // [] empty array - makes it run only 1 time, otherwise will run indefinitely
 
+    return schools
+}
+
+
+export const SchoolList = () => {
+    const schools = useSchoolData()
 
     return (
         <ol>
