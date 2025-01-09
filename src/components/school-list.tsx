@@ -27,7 +27,7 @@ export const SchoolList = () => {
     return (
         <ol>
                {schools.map(school => (
-                <SchoolItem school = {school} />
+                <SchoolItem  key={school.name} school = {school} />
                ))}
         </ol>
     )
