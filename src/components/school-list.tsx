@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { SchoolData } from '../types/school-data'
 import { SchoolItem } from './school-item'
+import { SchoolDetail } from './school-detail'
+
 
 
 const fetchData = async (): Promise<SchoolData[]> => {
@@ -39,27 +41,30 @@ export const SchoolList = () => {
 
     const { schools, setSortColumn, setAscending, ascending } = useSchoolData()
 
-
+    const [selectedSchool, selectSchool] = useState<SchoolData | null>(null)
 
     return (
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th onClick={() => {
-                        setSortColumn('average_student_gpa')
-                        setAscending(!ascending)
-                    }}>Average GPA {ascending ? '⬆':'⬇'}</th>
-                </tr>
-            </thead>
-            <tbody>
-                {schools.map(school => (
-                    <SchoolItem school={school} />
-                ))}
-            </tbody>
-        </table>
-
+        // <!--Fragment: component can only return 1 thing at a time.-->
+         <>         
+            {selectedSchool !== null ? <SchoolDetail school={selectedSchool} /> : null}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th onClick={() => {
+                            setSortColumn('average_student_gpa')
+                            setAscending(!ascending)
+                        }}>Average GPA {ascending ? '⬆' : '⬇'}</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {schools.map(school => (
+                        <SchoolItem key ={school.name} school ={school} selectSchool={selectSchool} />
+                    ))}
+                </tbody>
+            </table>
+        </>
     )
 
 }
