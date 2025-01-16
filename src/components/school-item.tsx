@@ -19,7 +19,8 @@ export const SchoolItem = ({school, selectSchool} : SchoolItemProps) => {
             }
         }>Details</button></td>
     </tr>
-//    <li className='school-item'> {school.name} </li>
+
    )
 }
 
+//    <li className='school-item'> {school.name} </li>
