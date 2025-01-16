@@ -2,11 +2,6 @@ import React from "react";
 import { SchoolData } from "../types/school-data";
 import './school-item.css'
 
-type SchoolItemProps = {
-    school : SchoolData
-    selectSchool: (school: SchoolData | null ) => void
-}
-
 export const SchoolItem = ({school, selectSchool} : SchoolItemProps) => {
 
    return (
